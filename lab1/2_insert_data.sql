@@ -1,8 +1,4 @@
--- =============================================================
--- ЛАБОРАТОРНАЯ РАБОТА №1. Наполнение базы данных
--- Файл: 2_insert_data.sql
--- Выполняет: Пункт 8 задания (минимум 10 записей в таблицу)
--- =============================================================
+-- Пункт 8 задания (минимум 10 записей в таблицу)
 
 -- Очистка таблиц перед вставкой (на случай перезапуска скрипта)
 -- TRUNCATE удаляет данные и сбрасывает счетчики ID (RESTART IDENTITY)
@@ -11,10 +7,7 @@ TRUNCATE TABLE public.orders RESTART IDENTITY CASCADE;
 TRUNCATE TABLE public.products RESTART IDENTITY CASCADE;
 TRUNCATE TABLE public.customers RESTART IDENTITY CASCADE;
 
--- =============================================================
 -- 1. Заполнение таблицы CUSTOMERS (12 записей)
--- Разные города нужны для будущих группировок (ЛР2)
--- =============================================================
 INSERT INTO public.customers
 (company_name, last_name, first_name, address, city, index_code, phone, email)
 VALUES
@@ -31,10 +24,7 @@ VALUES
 ('Logistics Co', 'Морозова', 'Татьяна', 'ул. Портовая, 56', 'Владивосток', '690000', '+79001110022', 'tanya@logistics.ru'),
 (NULL, 'Волков', 'Николай', 'ул. Звездная, 7', 'Самара', '443000', '+79002220033', 'volkov.n@mail.ru');
 
--- =============================================================
 -- 2. Заполнение таблицы PRODUCTS (12 записей)
--- reorder=true означает необходимость дозаказа (стр. 45 методички)
--- =============================================================
 INSERT INTO public.products
 (product_name, price, in_stock, reorder, description)
 VALUES
@@ -51,12 +41,7 @@ VALUES
 ('Жесткий диск 1TB', 4000.00, 25, false, 'HDD 7200rpm'),
 ('Флешка 64GB', 800.00, 100, false, 'USB 3.0');
 
--- =============================================================
 -- 3. Заполнение таблицы ORDERS (14 записей)
--- customer_id берется от 1 до 12.
--- status использует ENUM: 'A' (Adopted/Принят), 'P' (Processed/Обработан), 'C' (Cancelled/Отменен)
--- Соблюдается условие CHECK (ship_date >= order_date)
--- =============================================================
 INSERT INTO public.orders
 (customer_id, order_date, ship_date, paid_date, status)
 VALUES
